@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>تحميل تطبيق انجليش</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
@@ -10,23 +10,23 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent; /* إزالة لون التحديد عند اللمس في الموبايل */
         }
 
         body { 
             font-family: 'Cairo', sans-serif; 
-            /* خلفية متدرجة ديناميكية */
-            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1f1c2c, #928dab);
+            background: linear-gradient(-45deg, #0f2027, #2c5364, #1f1c2c);
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 10s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             color: white;
-            padding: 20px;
+            padding: 15px;
+            overflow: hidden;
         }
 
-        /* حركة الخلفية */
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -34,96 +34,137 @@
         }
 
         .container { 
-            max-width: 500px; 
+            max-width: 400px; 
             width: 100%;
-            /* تأثير الزجاج الشفاف Glassmorphism */
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); 
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 50px 30px; 
-            border-radius: 24px; 
-            box-shadow: 0 25px 45px rgba(0,0,0,0.2); 
+            background: rgba(255, 255, 255, 0.07); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15); 
+            padding: 40px 20px; 
+            border-radius: 35px; 
+            box-shadow: 0 20px 50px rgba(0,0,0,0.4); 
             text-align: center;
+            position: relative;
+        }
+
+        /* توهج خلف الأيقونة */
+        .icon-wrapper {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .icon-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: #00b09b;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: -1;
         }
 
         .app-icon { 
-            width: 130px; 
-            height: 130px; 
-            border-radius: 30px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 15px 25px rgba(0,0,0,0.3);
-            /* تأثير الطفو */
-            animation: float 4s ease-in-out infinite;
-            background-color: white; /* في حال كانت الـ SVG شفافة */
-            padding: 10px;
+            width: 110px; 
+            height: 110px; 
+            border-radius: 28px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+            animation: float 3s ease-in-out infinite;
+            background-color: white;
+            padding: 12px;
         }
 
-        /* حركة طفو الأيقونة */
         @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
         }
 
         h1 { 
-            font-size: 42px;
+            font-size: 32px;
             font-weight: 900;
-            margin-bottom: 15px; 
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            margin-bottom: 10px; 
+            background: linear-gradient(to bottom, #fff, #bdc3c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         p { 
-            font-size: 18px; 
-            line-height: 1.7; 
-            margin-bottom: 40px; 
-            color: #e0e0e0;
+            font-size: 16px; 
+            line-height: 1.6; 
+            margin-bottom: 35px; 
+            color: #d1d1d1;
+            padding: 0 10px;
         }
 
         .download-btn { 
-            display: inline-flex;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            /* تدرج لوني فخم للزر */
+            gap: 12px;
             background: linear-gradient(135deg, #00b09b, #96c93d); 
             color: white; 
-            padding: 16px 40px; 
+            padding: 18px 0; 
+            width: 100%; /* الزر بعرض الحاوية في الموبايل */
             text-decoration: none; 
-            font-size: 22px; 
+            font-size: 20px; 
             font-weight: 700;
-            border-radius: 50px; 
-            box-shadow: 0 10px 20px rgba(0, 176, 155, 0.3);
-            transition: all 0.4s ease; 
+            border-radius: 20px; 
+            box-shadow: 0 10px 25px rgba(0, 176, 155, 0.4);
+            transition: all 0.3s ease; 
+            animation: pulse 2s infinite;
         }
 
-        .download-btn:hover { 
-            transform: translateY(-5px) scale(1.05); 
-            box-shadow: 0 15px 25px rgba(0, 176, 155, 0.5);
-            background: linear-gradient(135deg, #96c93d, #00b09b); 
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 176, 155, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(0, 176, 155, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 176, 155, 0); }
         }
 
-        /* إضافة أيقونة تحميل صغيرة بجانب النص */
+        .download-btn:active { 
+            transform: scale(0.96); 
+        }
+
         .download-icon {
             width: 24px;
             height: 24px;
             fill: currentColor;
         }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* تعديلات للشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            h1 { font-size: 28px; }
+            .app-icon { width: 90px; height: 90px; }
+            .download-btn { font-size: 18px; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <img src="english_svg.svg" alt="أيقونة تطبيق انجليش" class="app-icon">
+        <div class="icon-wrapper">
+            <img src="english_svg.svg" alt="أيقونة تطبيق انجليش" class="app-icon">
+        </div>
         
         <h1>تطبيق انجليش</h1>
-        <p>بوابتك الأذكى والأسرع لإتقان اللغة الإنجليزية. ابدأ رحلة التعلم الممتعة وحمّل التطبيق الآن!</p>
+        <p>تعلم الإنجليزية بمتعة وسهولة من خلال تطبيقنا المتكامل. ابدأ رحلتك الآن!</p>
         
         <a href="https://github.com/Salah-Ali-Mohammed-Ali-Al-Barai/English-App/releases/download/v1.0/english-app.apk" class="download-btn">
             <svg class="download-icon" viewBox="0 0 24 24">
                 <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
             </svg>
-            تحميل التطبيق
+            تحميل للأندرويد (APK)
         </a>
+
+        <div class="footer-text">الإصدار 1.0.0 | آمن ومفحوص</div>
     </div>
 </body>
 </html>
